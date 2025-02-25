@@ -19,8 +19,8 @@ CREATE TABLE t_lucie_krivankova_project_SQL_primary_final AS (
 		FROM czechia_payroll p
 		JOIN czechia_payroll_industry_branch i
 			ON p.industry_branch_code = i.code 
-		WHERE 1=1
-			AND p.value_type_code = 5958
+		WHERE
+			p.value_type_code = 5958
 			AND p.calculation_code = 100
 		GROUP BY industry, p.payroll_year
 	)
