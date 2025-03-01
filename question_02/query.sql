@@ -8,8 +8,8 @@ SELECT
 	round(avg(payroll_avg)/price_avg) AS to_buy,
 	price_unit 
 FROM t_lucie_krivankova_project_SQL_primary_final
-WHERE 1=1 
-	AND (price_name LIKE 'Mléko%' OR price_name LIKE 'Chl%')
+WHERE 
+	(price_name LIKE 'Mléko%' OR price_name LIKE 'Chl%')
 	AND (year = 2006 OR year = 2018)
 	GROUP BY year, price_name, price_avg, price_unit
 ORDER BY year, price_name
