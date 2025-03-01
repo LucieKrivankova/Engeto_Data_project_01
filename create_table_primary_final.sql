@@ -3,7 +3,7 @@ CREATE TABLE t_lucie_krivankova_project_SQL_primary_final AS (
 		SELECT
 			date_part('year', cp.date_from) AS year,
 			cpc."name" AS price_name,
-			round(avg(cp.value)::numeric, 2) AS price_avg,
+			round(avg(cp.value)::NUMERIC, 2) AS price_avg,
 			cpc.price_value,
 			cpc.price_unit
 		FROM czechia_price cp
@@ -12,15 +12,15 @@ CREATE TABLE t_lucie_krivankova_project_SQL_primary_final AS (
 		GROUP BY price_name, year, cpc.price_value, cpc.price_unit
 	),
 	payroll AS (
-		SELECT 
+		SELECT
 			p.payroll_year,
 			i."name" AS industry,
 			round(avg(p.value)) AS payroll_avg
 		FROM czechia_payroll p
 		JOIN czechia_payroll_industry_branch i
 			ON p.industry_branch_code = i.code 
-		WHERE
-			p.value_type_code = 5958
+		WHERE 1=1
+			AND p.value_type_code = 5958
 			AND p.calculation_code = 100
 		GROUP BY industry, p.payroll_year
 	)
